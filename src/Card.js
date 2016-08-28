@@ -7,10 +7,10 @@ class Card extends React.Component {
 
   render () {
     const direction = this.props.up ? 'up' : 'down'
-    switch(direction) {
+    switch (direction) {
       case 'down': return <img src={this.props.value.backgroundURL} onClick={this.handleClick} className={`card ${direction}`} />
       break
-      case 'up': return <img src={this.props.value.cardImageURL} onClick={this.handleClick} className={`card ${direction}`} />
+      case 'up': return <img src={this.props.value.cardImageURL} className={`card ${direction}`} />
       break
       default: return <img src={this.props.value.backgroundURL} onClick={this.handleClick} className={`card ${direction}`} />
     }
