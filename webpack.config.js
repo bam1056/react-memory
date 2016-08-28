@@ -16,6 +16,10 @@ module.exports = {
       {
         test: /\.(sass|scss)$/,
         loaders: ['style', 'css', 'sass']
+      },
+      {
+        test: /\.svg$/,
+        loader: 'file'
       }
     ]
   },

@@ -1,6 +1,8 @@
 import React from 'react'
 import './style.sass'
 import Card from './Card'
+import logo from './lotrlogo.svg'
+
 const SHOW_CARD = 1500
 const cardArray = [
   {
@@ -106,8 +108,8 @@ class App extends React.Component {
         let up = (!this.state.turned.includes(index)) ? this.state.matched.includes(index) : this.state.turned.includes(index)
         return <Card flipCard={this.flipCard} value={card} up={up} index={index} key={index} />
       })
-      return <div>
-        <h1>Class doing memory____TOGETHHHHHHHER!!!!</h1>
+      return <div className="Home">
+        <img src={logo} height="200px" alt="lotr logo" />
         <main>
           {cards}
         </main>
