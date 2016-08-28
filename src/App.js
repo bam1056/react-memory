@@ -73,6 +73,10 @@ class App extends React.Component {
     }
   }
 
+  _reset () {
+    window.location.reload()
+  }
+
   flipCard = (index) => {
     const { turned, cards } = this.state
     let isMatched
@@ -117,6 +121,7 @@ class App extends React.Component {
     } else {
       return <div>
         <h1> YOU WIN!!! </h1>
+        <button onClick={this._reset}>Reset</button>
       </div>
     }
   }
