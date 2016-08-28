@@ -113,16 +113,16 @@ class App extends React.Component {
         return <Card flipCard={this.flipCard} value={card} up={up} index={index} key={index} />
       })
       return <div className="Home">
-        <img src={logo} height="200px" alt="lotr logo" />
-        <main>
-          {cards}
-        </main>
-      </div>
+          <img src={logo} height="200px" alt="lotr logo" />
+          <main>
+            {cards}
+          </main>
+        </div>
     } else {
-      return <div>
-        <h1> YOU WIN!!! </h1>
-        <button onClick={this._reset}>Reset</button>
-      </div>
+      return <div className="Win">
+          <h1> YOU WIN!!! </h1>
+          <button onClick={this._reset}>Reset</button>
+        </div>
     }
   }
 }
