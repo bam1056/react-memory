@@ -140,6 +140,9 @@ class App extends React.Component {
           <main>
             {cards}
           </main>
+          <footer>
+            <h5>&copy;Brett Macy Productions, Inc.</h5>
+          </footer>
         </div>
     } else {
       return <div className="Win">
