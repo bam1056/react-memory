@@ -62,15 +62,38 @@ const cardArray = [
 ]
 
 class App extends React.Component {
-
   constructor () {
     super()
     this.state = {
-      cards: cardArray.concat(cardArray),
+      cards: [],
       matched: [],
       turned: [],
       win: false
     }
+  }
+
+  componentWillMount () {
+      this.setState({
+        cards: this._randomizeCards(cardArray.concat(cardArray))
+      })
+  }
+
+  _randomizeCards (array) {
+    let currentIndex = array.length, temporaryValue, randomIndex
+
+  // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      currentIndex -= 1
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex]
+      array[currentIndex] = array[randomIndex]
+      array[randomIndex] = temporaryValue
+    }
+    return array
   }
 
   _reset () {
@@ -123,7 +146,7 @@ class App extends React.Component {
           <h1> YOU WIN!!! </h1>
           <button onClick={this._reset}>Reset</button>
         </div>
-    }
+      }
   }
 }
 
