@@ -146,11 +146,11 @@ class App extends React.Component {
         </div>
     } else {
       return <div className="Win">
-          <h1> YOU WIN!!! </h1>
+          <h1> THE PRECIOUS WINS!!! </h1>
+          <img height="850" width="496" src="http://vignette3.wikia.nocookie.net/lotr/images/e/e1/Gollum_Render.png/revision/20141216091433" alt="gollum" />
           <button onClick={this._reset}>Reset</button>
         </div>
       }
   }
 }
-
 export default App
