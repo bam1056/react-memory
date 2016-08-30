@@ -73,9 +73,20 @@ class App extends React.Component {
   }
 
   componentWillMount () {
+    const game = JSON.parse(window.sessionStorage.getItem('game'))
+    if (game && !game.win){
+      this.setState(game)
+    } else
       this.setState({
-        cards: this._randomizeCards(cardArray.concat(cardArray))
-      })
+      cards: this._randomizeCards(cardArray.concat(cardArray)),
+      matched: [],
+      win: false
+    })
+  }
+
+  componentWillUpdate (nextProps, nextState) {
+    const data = JSON.stringify({...nextState, turned: []})
+    window.sessionStorage.setItem('game', data)
   }
 
   _randomizeCards (array) {
@@ -108,7 +119,7 @@ class App extends React.Component {
         turned: turned.concat(index)
       }, () => {
         if (this.state.turned.length === 2) {
-          if (cards[this.state.turned[0]] === cards[this.state.turned[1]]) {
+          if (cards[this.state.turned[0]].name === cards[this.state.turned[1]].name) {
             this.setState({
               matched: this.state.matched.concat(...this.state.turned),
               turned: []
@@ -132,11 +143,12 @@ class App extends React.Component {
   render () {
     if (!this.state.win) {
       const cards = this.state.cards.map((card, index) => {
-        let up = (!this.state.turned.includes(index)) ? this.state.matched.includes(index) : this.state.turned.includes(index)
+        let up = !this.state.turned.includes(index) ? this.state.matched.includes(index) : this.state.turned.includes(index)
         return <Card flipCard={this.flipCard} value={card} up={up} index={index} key={index} />
       })
       return <div className="Home">
           <img src={logo} height="200px" alt="lotr logo" />
+          <h1>Games Won: {window.sessionStorage.getItem('score')}</h1>
           <main>
             {cards}
           </main>
@@ -145,10 +157,12 @@ class App extends React.Component {
           </footer>
         </div>
     } else {
+      let score = JSON.stringify(+window.sessionStorage.getItem('score') + 1)
+      window.sessionStorage.setItem('score',`${score}`)
       return <div className="Win">
-          <h1> THE PRECIOUS WINS!!! </h1>
+          <h1> THE PRECIOUS WINS!</h1>
           <img height="850" width="496" src="http://vignette3.wikia.nocookie.net/lotr/images/e/e1/Gollum_Render.png/revision/20141216091433" alt="gollum" />
-          <button onClick={this._reset}>Reset</button>
+          <button onClick={this._reset}>Click for New Game</button>
         </div>
       }
   }
